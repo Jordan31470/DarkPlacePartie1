@@ -10,7 +10,7 @@ namespace dark_place_game.tests {
  
         [Fact]         
         public void VraiShouldBeTrue()         {             
-            var vrai = false;             
+            var vrai = true;             
             Assert.True(vrai, "Erreur, vrai vaut false. Le test est volontairement mal écrit, corrigez le.");         
             } 
  
@@ -35,12 +35,15 @@ namespace dark_place_game.tests {
             Assert.True(result);         
             } 
  
-        [Fact]         public void CreatingCurrencyHolderWithNegativeContentThrowExeption()         
+        [Fact]         
+        public void CreatingCurrencyHolderWithNegativeContentThrowExeption()         
         {             
             // Petite subtilité : pour tester les levées d'exeption en c# on est obligé d'utiliser un concept un             
         // sans entrer dans le détail pour déclarer une lambda respectez la syntaxe ci dessous, pour rédiger             
-        Action mauvaisAppel = () => new CurrencyHolder(EXEMPLE_NOM_MONNAIE_VALIDE,EXEMPLE_CAPACITE_VALIDE ,             
-        Assert.Throws<ArgumentException>(mauvaisAppel); 
+        Action mauvaisAppel = () => new CurrencyHolder(EXEMPLE_NOM_MONNAIE_VALIDE,EXEMPLE_CAPACITE_VALIDE ,-10);             
+        Assert.Throws<ArgumentException>(mauvaisAppel);
+       
+        
         } 
  
         [Fact]         
@@ -48,44 +51,51 @@ namespace dark_place_game.tests {
         {             
             // Petite subtilité : pour tester les levées d'exeption en c# on est obligé d'utiliser un concept un             
             // sans entrer dans le détail pour déclarer une lambda respectez la syntaxe ci dessous, pour rédiger             
-            Action mauvaisAppel = () => new CurrencyHolder(null,EXEMPLE_CAPACITE_VALIDE , EXEMPLE_CONTENANCE_INIT            
+            Action mauvaisAppel = () => new CurrencyHolder(null,EXEMPLE_CAPACITE_VALIDE , EXEMPLE_CONTENANCE_INITIALE_VALIDE);            
             Assert.Throws<ArgumentException>(mauvaisAppel);         
             } 
  
-        [Fact]         
-        public void CreatingCurrencyHolderWithEmptyNameThrowExeption()        
-         {             
-            // Petite subtilité : pour tester les levées d'exeption en c# on est obligé d'utiliser un concept un             
-            // sans entrer dans le détail pour déclarer une lambda respectez la syntaxe ci dessous, pour rédiger             
-            Action mauvaisAppel = () => new CurrencyHolder("",EXEMPLE_CAPACITE_VALIDE , EXEMPLE_CONTENANCE_INITIA            
-            Assert.Throws<ArgumentException>(mauvaisAppel);         
-            } 
+        [Fact]
+        public void CreatingCurrencyHolderWithEmptyNameThrowExeption()
+        {
+            // Petite subtilité : pour tester les levées d'exeption en c# on est obligé d'utiliser un concept un peu exotique : les expression lambda.
+            // sans entrer dans le détail pour déclarer une lambda respectez la syntaxe ci dessous, pour rédiger des tests unitaires elle devrais vous suffire.
+            Action mauvaisAppel = () => new CurrencyHolder("",EXEMPLE_CAPACITE_VALIDE , EXEMPLE_CONTENANCE_INITIALE_VALIDE);
+            Assert.Throws<ArgumentException>(mauvaisAppel);
+        } 
  
-        /** #TODO_ETAPE_4         
+         #TODO_ETAPE_4         
         [Fact]         
         public void BrouzoufIsAValidCurrencyName ()         
         {             
-            // A vous d'écrire un test qui vérife qu'on peut créer un CurrencyHolder contenant une monnaie dont l        
-            } 
+        // A vous d'écrire un test qui vérife qu'on peut créer un CurrencyHolder contenant une monnaie dont l        
+        } 
  
         [Fact]         
-        public void DollardIsAValidCurrencyName ()         
-        {             // A vous d'écrire un test qui vérife qu'on peut créer un CurrencyHolder contenant une monnaie dont l        } 
+        public void DollardIsAValidCurrencyName () 
+        {             
+        // A vous d'écrire un test qui vérife qu'on peut créer un CurrencyHolder contenant une monnaie dont l        
+        } 
  
         [Fact]         
         public void TestPut10CurrencyInNonFullCurrencyHolder()         
         {             
-            // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac a moi        } 
+        // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac a moi        
+        } 
  
         [Fact]         
         public void TestPut10CurrencyInNearlyFullCurrencyHolder()         
         {             
-            // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac quasi        } 
+        // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac quasi        
+        } 
  
         [Fact]         
         public void CreatingCurrencyHolderWithNameShorterThan4CharacterThrowExeption()         {             
-            // A vous d'écrire un test qui doit échouer s'il es possible de créer un CurrencyHolder dont Le Nom D        } 
+        // A vous d'écrire un test qui doit échouer s'il es possible de créer un CurrencyHolder dont Le Nom D       
+        } 
 		[Fact]         
-        public void WithdrawMoreThanCurrentAmountInCurrencyHolderThrowExeption()      
+        public void WithdrawMoreThanCurrentAmountInCurrencyHolderThrowExeption()  
+        #TODO_ETAPE_4     
         
-    } } 
+    } 
+    } 

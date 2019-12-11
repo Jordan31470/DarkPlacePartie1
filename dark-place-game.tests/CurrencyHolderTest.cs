@@ -121,11 +121,59 @@ namespace dark_place_game.tests {
             };
             Assert.Throws<CantWitchDrawMoreThanCurrentAmountExeption>(mauvaisAppel);
                 // A vous d'écrire un test qui vérifie que retirer (methode withdraw) une quantité negative de curren            
-                // Asruce : dans ce cas prévu avant même de pouvoir compiler le test, vous allez être obligé de créer        }         #TODO_ETAPE_4 */ 
+                // Asruce : dans ce cas prévu avant même de pouvoir compiler le test, vous allez être obligé de créer                 
+                
  
         }  
-       
-    
-    } 
+        [Fact]         
+        public void CreatingCurrencyHolderWithNameBetween4Than10CharacterThrowExeption() 
+        {
+            //moins de 4 caracteres
+            Action mauvaisAppel1 = () => new CurrencyHolder("EU",EXEMPLE_CAPACITE_VALIDE , EXEMPLE_CONTENANCE_INITIALE_VALIDE);
+            Assert.Throws<ArgumentException>(mauvaisAppel1);
+            // 12 caracteres
+            Action mauvaisAppel2 = () => new CurrencyHolder("EROTIYTGFRTY",EXEMPLE_CAPACITE_VALIDE , EXEMPLE_CONTENANCE_INITIALE_VALIDE);
+            Assert.Throws<ArgumentException>(mauvaisAppel2);
     }
+    [Fact]         
+        public void StoreMoreThanCurrentAmountInCurrencyHolderThrowExeption()        {
+            Action mauvaisAppel = () => {
+            var ch = new CurrencyHolder(EXEMPLE_NOM_MONNAIE_VALIDE,250,200);
+            ch.Withdraw(-20);
+            };
+            Assert.Throws<CantWitchDrawMoreThanCurrentAmountExeption>(mauvaisAppel);
+                               
+        }
+        [Fact]         
+        public void CantStoreAndWithdrawCurrencyHolderThrowExeption()        {
+            Action mauvaisAppel1 = () => {
+            var ch = new CurrencyHolder(EXEMPLE_NOM_MONNAIE_VALIDE,250,200);
+            ch.Store(0);
+            };
+            Assert.Throws<ArgumentException>(mauvaisAppel1); 
+            Action mauvaisAppel2 = () => {
+            var ch = new CurrencyHolder(EXEMPLE_NOM_MONNAIE_VALIDE,250,200);
+            ch.Withdraw(0);
+            };
+            Assert.Throws<ArgumentException>(mauvaisAppel2);   
+    }
+        [Fact]         
+        public void CantCreateCurrencyHolderWithAThrowExeption()        {
+            Action mauvaisAppel1 = () => {
+            var ch = new CurrencyHolder("Acevedv",200,0);
+            };
+            Assert.Throws<ArgumentException>(mauvaisAppel1); 
+               
+    }
+    [Fact]         
+        public void CantCreateCurrencyHolderWithaThrowExeption()        {
+            Action mauvaisAppel1 = () => {
+            var ch = new CurrencyHolder("afcevedv",200,0);
+            };
+            Assert.Throws<ArgumentException>(mauvaisAppel1); 
+               
+    }
+
+}
+}
 

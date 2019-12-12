@@ -44,7 +44,7 @@ namespace dark_place_game {
                 private int capacity = 0; 
  
         public CurrencyHolder(string name,int capacity, int amount) { 
-            if(amount < 0  || name == null || name == "" || name.Length < 4 || name.Length > 10){
+            if(amount < 0  || name == null || name == "" || name.Length < 4 || name.Length > 10 || capacity < 1){
                 throw new System.ArgumentException("Argument invalide"); 
             }  
             if(name[0]=='a' || name[0]=='A'){
@@ -55,12 +55,19 @@ namespace dark_place_game {
             CurrentAmount = amount;         
             } 
  
-        public bool IsEmpty() {             
-            return true; 
+        public bool IsEmpty() {   
+            if(CurrentAmount == 0){
+                return true;
+            }          
+            return false; 
         } 
  
-        public bool IsFull() {             
-            return true;         
+        public bool IsFull() {  
+            if(CurrentAmount == Capacity){
+                return true;
+            }    
+
+            return false;         
         } 
  
         public void Store(int amount) {

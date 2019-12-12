@@ -90,7 +90,18 @@ namespace dark_place_game.tests {
         // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac a moi
 
         } 
- 
+        [Fact]         
+        public void StoreMore10CurrencyInNearlyFullCurrencyHolder()         
+        {
+            Action mauvaisAppel = () => {
+            var ch = new CurrencyHolder(EXEMPLE_NOM_MONNAIE_VALIDE,250,200);
+            ch.Store(-60);
+            };
+            Assert.Throws<StoreMoreThanCurrentAmountInCurrencyHolderThrowExeption>(mauvaisAppel);
+
+        // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac quasi        
+        } 
+        
         [Fact]         
         public void TestPut10CurrencyInNearlyFullCurrencyHolder()         
         {
@@ -102,6 +113,7 @@ namespace dark_place_game.tests {
 
         // A vous d'écrire un test qui vérifie que si on ajoute via la methode put 10 currency à un sac quasi        
         } 
+        
  
         [Fact]         
         public void CreatingCurrencyHolderWithNameShorterThan4CharacterThrowExeption() 
@@ -173,7 +185,39 @@ namespace dark_place_game.tests {
             Assert.Throws<ArgumentException>(mauvaisAppel1); 
                
     }
+    [Fact]         
+        public void CantCreateCurrencyHolderWithCapacityThrowExeption()        {
+            Action mauvaisAppel1 = () => {
+            var ch = new CurrencyHolder("test",0,0);
+            };
+            Assert.Throws<ArgumentException>(mauvaisAppel1); 
 
 }
+    [Fact]  
+    public void IsEmptyTrue()        {
+            var ch = new CurrencyHolder("Test",250,0);
+            Assert.True(ch.IsEmpty());
+            }
+             [Fact]  
+    public void IsEmptyFalse()        {
+            var ch = new CurrencyHolder("Test",250,100);
+            Assert.False(ch.IsEmpty());
+            }
+
+            [Fact]  
+    public void IsFullTrueTest()        {
+            var ch = new CurrencyHolder("Test",250,250);
+            Assert.True(ch.IsFull());
+            var sac = new CurrencyHolder("Test",500,500);
+            Assert.True(sac.IsFull());
+            }
+             public void IsFullFalseTest()        {
+            var ch = new CurrencyHolder("Test",250,240);
+            Assert.False(ch.IsFull());
+            var sac = new CurrencyHolder("Test",300,200);
+            Assert.False(sac.IsFull());
+            }
 }
+}
+
 
